@@ -35,7 +35,7 @@ class HTTPClient
     begin
       require 'addressable/uri'
       # Older versions doesn't have #default_port
-      unless Addressable::URI.instance_methods.include?(:default_port) # 1.9 only
+      unless Addressable::URI.instance_methods.map { |m| m.to_sym }.include?(:default_port)
         raise LoadError
       end
       class AddressableURI < Addressable::URI
